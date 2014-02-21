@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import com.example.recorder.service.CallRecordService;
 
-public class MyActivity extends Activity {
+public class MainActivity extends Activity {
     private static final String TAG = "RecordMyActivity";
 
     /**
