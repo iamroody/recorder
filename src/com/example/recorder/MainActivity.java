@@ -7,7 +7,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.recorder.service.CallRecordService;
 import com.example.recorder.utils.SpeechJsonParser;
@@ -17,10 +17,13 @@ public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
     private static final int UPDATE_TEXT_MSG = 1001;
+    private static final int RESTART_SPEECH_RECOGNIZER = 1003;
+    private static final int DELAY_MILLIONS = 4000;
+    private boolean speechRunning = false;
 
     private SpeechRecognizer speechRecognizer;
 
-    private EditText speechText;
+    private TextView speechText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,10 +46,11 @@ public class MainActivity extends BaseActivity {
                 startRecording();
             }
         });
-        speechText = (EditText) findViewById(R.id.speech_text);
+        speechText = (TextView) findViewById(R.id.speech_text);
     }
 
     private void initSpeech() {
+        SpeechUtility.getUtility(MainActivity.this).setAppid("53060b5b");
         speechRecognizer = new SpeechRecognizer(this, initListener);
         setRecognizerParams();
 
@@ -59,6 +63,7 @@ public class MainActivity extends BaseActivity {
 
     public void startRecognise(){
         speechRecognizer.startListening(recognizerListener);
+        speechRunning = true;
     }
 
     private void setRecognizerParams(){
@@ -69,6 +74,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private RecognizerListener recognizerListener = new RecognizerListener.Stub() {
+
+
 
         @Override
         public void onVolumeChanged(int i) throws RemoteException {
@@ -83,25 +90,25 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onEndOfSpeech() throws RemoteException {
             Log.i(TAG, "--> end of speech");
-            speechRecognizer.startListening(this);
+            speechRunning = false;
+            handler.sendEmptyMessageDelayed(RESTART_SPEECH_RECOGNIZER, DELAY_MILLIONS);
         }
 
         @Override
         public void onResult(RecognizerResult recognizerResult, boolean b) throws RemoteException {
+            Log.i(TAG, "--> result of speech");
             String jsonResult = recognizerResult.getResultString();
             if (jsonResult!=null) {
                 Message message = handler.obtainMessage(UPDATE_TEXT_MSG);
                 message.obj = SpeechJsonParser.parseIatResult(recognizerResult.getResultString());
                 message.sendToTarget();
-            }else{
-                Log.e(TAG, "--> result is null");
             }
+            startRecognise();
         }
 
         @Override
         public void onError(int i) throws RemoteException {
             Toast.makeText(MainActivity.this, "errorCode:"+i, Toast.LENGTH_SHORT).show();
-            speechRecognizer.startListening(this);
         }
     };
 
@@ -111,6 +118,8 @@ public class MainActivity extends BaseActivity {
             if (msg.what == UPDATE_TEXT_MSG) {
                 String result = (String) msg.obj;
                 speechText.append(result);
+            }else if (msg.what == RESTART_SPEECH_RECOGNIZER && !speechRunning) {
+                startRecognise();
             }
         }
     };

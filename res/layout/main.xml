@@ -16,9 +16,9 @@
 		android:text="Start Recognise your sound"
 		android:id="@+id/recognise_btn"
 		android:onClick="startRecording"/>
-	<EditText
+	<TextView
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="200dp"
 	    android:id="@+id/speech_text"
 		/>
 </LinearLayout>
