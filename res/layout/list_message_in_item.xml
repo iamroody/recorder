@@ -5,19 +5,26 @@
 	android:orientation="horizontal"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:padding="@dimen/large_padding"
+	android:paddingTop="@dimen/larger_padding"
+	android:paddingBottom="@dimen/larger_padding"
 	>
-	<TextView
+	<RelativeLayout
 		android:layout_height="wrap_content"
-	    android:layout_width="0dp"
-	    android:layout_weight="4"
-	    android:textColor="@drawable/message_font_color"
-	    android:textSize="@dimen/middle_font_size"
-	    android:focusableInTouchMode="true"
-	    android:clickable="true"
-	    android:background="@drawable/list_message_in"
-	    android:id="@+id/content"
-		/>
+		android:layout_width="0dp"
+		android:layout_weight="4"
+		>
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:textColor="@drawable/message_font_color"
+			android:textSize="@dimen/middle_font_size"
+			android:focusableInTouchMode="true"
+			android:clickable="true"
+			android:background="@drawable/list_message_in"
+			android:id="@+id/content"
+			/>
+	</RelativeLayout>
 	<View
 		android:layout_height="wrap_content"
 	    android:layout_width="0dp"

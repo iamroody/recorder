@@ -4,4 +4,7 @@
     <string name="start_record">开始录音</string>
     <string name="start_recognize">开始语音识别</string>
     <string name="text_phone">聋哑电话</string>
+    <string name="send">发送</string>
+    <string name="message_edit_hint">请输入你的消息</string>
+
 </resources>
