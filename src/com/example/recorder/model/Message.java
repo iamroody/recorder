@@ -1,5 +1,7 @@
 package com.example.recorder.model;
 
+import com.example.recorder.utils.Constants;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,4 +37,10 @@ public class Message {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         return df.format(time);
     }
+
+    public boolean isSender() {
+        return Constants.MESSAGE_SENDER_ME.equals(sender);
+    }
+
+
 }

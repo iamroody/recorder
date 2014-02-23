@@ -21,6 +21,7 @@
 		android:focusableInTouchMode="true"
 		android:clickable="true"
 		android:background="@drawable/list_message_blue_out"
+	    android:id="@+id/content"
 		/>
 
 
