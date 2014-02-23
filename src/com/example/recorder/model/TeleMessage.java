@@ -1,5 +1,7 @@
 package com.example.recorder.model;
 
+import com.example.recorder.utils.Constants;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,13 +13,13 @@ import java.util.Date;
  * Time: 11:25 上午
  * Email:gongmingqm10@foxmail.com
  */
-public class Message {
+public class TeleMessage {
 
     private String content;
     private String sender;
     private Date time;
 
-    public Message(String content, String sender) {
+    public TeleMessage(String content, String sender) {
         this.content = content;
         this.sender = sender;
         this.time = Calendar.getInstance().getTime();
@@ -35,4 +37,10 @@ public class Message {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         return df.format(time);
     }
+
+    public boolean isSender() {
+        return Constants.MESSAGE_SENDER_ME.equals(sender);
+    }
+
+
 }

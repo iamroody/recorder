@@ -5,4 +5,5 @@
 	<color name="theme_bar_color">@color/deep_blue</color>
 	<color name="transparent">@android:color/transparent</color>
 	<color name="black">@android:color/black</color>
+	<color name="grayish">#cccccc</color>
 </resources>

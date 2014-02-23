@@ -3,7 +3,7 @@
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-    android:background="@drawable/bg_1"
+    android:background="@drawable/main_bg"
     >
 	<RelativeLayout
 		android:layout_height="@dimen/menu_height"
@@ -20,42 +20,63 @@
 		    android:text="@string/text_phone"
 			/>
 	</RelativeLayout>
-	<LinearLayout
-		android:layout_height="match_parent"
+	<ListView
+		android:layout_height="0dp"
+		android:layout_width="fill_parent"
+		android:layout_weight="1"
+		android:padding="@dimen/normal_padding"
+		android:id="@+id/speech_list"
+		android:cacheColorHint="@color/transparent"
+		android:listSelector="@color/transparent"
+		android:divider="@color/transparent"
+		android:dividerHeight="0dp"
+		android:alwaysDrawnWithCache="false"
+		android:scrollbars="none"
+		/>
+
+	<RelativeLayout
+		android:layout_height="@dimen/bottom_bar_height"
 	    android:layout_width="match_parent"
 	    android:padding="@dimen/normal_padding"
-	    android:orientation="vertical"
+	    android:background="@drawable/wine_publish_bg_bottom_bar"
+	    android:gravity="center_vertical"
 		>
-		<Button
-			android:layout_width="fill_parent"
-			android:layout_height="@dimen/btn_height"
-			android:text="@string/start_record"
-			android:id="@+id/record_button"
-			android:background="@drawable/btn_wine_blue"
-		    android:textColor="@color/white"
-			/>
-		<Button
-			android:layout_width="fill_parent"
-			android:layout_height="@dimen/btn_height"
-			android:text="@string/start_recognize"
-			android:id="@+id/recognise_btn"
-			android:layout_marginTop="@dimen/larger_padding"
-			android:layout_marginBottom="@dimen/larger_padding"
-			android:textColor="@color/white"
-			android:background="@drawable/btn_wine_blue"/>
-		<TextView
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:id="@+id/speech_text"
-			/>
-		<ListView
+		<ImageView
 			android:layout_height="fill_parent"
-		    android:layout_width="fill_parent"
-		    android:id="@+id/speech_list"
-		    android:cacheColorHint="@color/transparent"
-		    android:listSelector="@color/transparent"
-		    android:alwaysDrawnWithCache="false"
+		    android:layout_width="50dp"
+		    android:padding="@dimen/normal_padding"
+		    android:id="@+id/voice_btn"
+		    android:scaleType="fitCenter"
+		    android:src="@drawable/chat_voice_btn"
+		    android:layout_marginLeft="@dimen/small_padding"
+		    android:layout_alignParentLeft="true"
 			/>
-	</LinearLayout>
+		<TextView
+			android:layout_width="60dp"
+		    android:layout_height="fill_parent"
+		    android:background="@drawable/button_blue_bg"
+		    android:textColor="@color/white"
+		    android:id="@+id/send_btn"
+		    android:text="@string/send"
+		    android:gravity="center"
+		    android:textSize="@dimen/middle_font_size"
+		    android:layout_margin="@dimen/small_padding"
+		    android:layout_alignParentRight="true"
+			/>
+		<EditText
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_toRightOf="@id/voice_btn"
+			android:layout_toLeftOf="@id/send_btn"
+			android:paddingLeft="@dimen/normal_padding"
+			android:paddingRight="@dimen/normal_padding"
+			android:textColor="@color/black"
+			android:textColorHint="@color/grayish"
+			android:hint="@string/message_edit_hint"
+			android:id="@+id/msg_edit"
+		    android:background="@drawable/input"
+			/>
+
+	</RelativeLayout>
 </LinearLayout>
 
