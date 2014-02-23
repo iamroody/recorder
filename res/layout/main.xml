@@ -3,23 +3,59 @@
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
+    android:background="@drawable/bg_1"
     >
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:id="@+id/record_button"
-        />
-	<Button
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="Start Recognise your sound"
-		android:id="@+id/recognise_btn"
-		android:onClick="startRecording"/>
-	<TextView
-		android:layout_width="fill_parent"
-		android:layout_height="200dp"
-	    android:id="@+id/speech_text"
-		/>
+	<RelativeLayout
+		android:layout_height="@dimen/menu_height"
+	    android:layout_width="match_parent"
+	    android:background="@color/theme_bar_color"
+	    android:layout_marginBottom="@dimen/larger_padding"
+		>
+		<TextView
+			android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"
+		    android:textSize="@dimen/title_font_size"
+		    android:textColor="@color/white"
+		    android:layout_centerInParent="true"
+		    android:text="@string/text_phone"
+			/>
+	</RelativeLayout>
+	<LinearLayout
+		android:layout_height="match_parent"
+	    android:layout_width="match_parent"
+	    android:padding="@dimen/normal_padding"
+	    android:orientation="vertical"
+		>
+		<Button
+			android:layout_width="fill_parent"
+			android:layout_height="@dimen/btn_height"
+			android:text="@string/start_record"
+			android:id="@+id/record_button"
+			android:background="@drawable/btn_wine_blue"
+		    android:textColor="@color/white"
+			/>
+		<Button
+			android:layout_width="fill_parent"
+			android:layout_height="@dimen/btn_height"
+			android:text="@string/start_recognize"
+			android:id="@+id/recognise_btn"
+			android:layout_marginTop="@dimen/larger_padding"
+			android:layout_marginBottom="@dimen/larger_padding"
+			android:textColor="@color/white"
+			android:background="@drawable/btn_wine_blue"/>
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/speech_text"
+			/>
+		<ListView
+			android:layout_height="fill_parent"
+		    android:layout_width="fill_parent"
+		    android:id="@+id/speech_list"
+		    android:cacheColorHint="@color/transparent"
+		    android:listSelector="@color/transparent"
+		    android:alwaysDrawnWithCache="false"
+			/>
+	</LinearLayout>
 </LinearLayout>
 
