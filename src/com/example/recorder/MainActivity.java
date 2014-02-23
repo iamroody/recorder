@@ -30,6 +30,8 @@ public class MainActivity extends BaseActivity {
 
     private SpeechRecognizer speechRecognizer;
 
+    private ListMessageAdapter messageAdapter;
+
     private TextView speechText;
     private ListView speechList;
 
@@ -37,6 +39,7 @@ public class MainActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        messageAdapter = new ListMessageAdapter(this, getDemoMessages());
         initLayout();
         initSpeech();
     }
@@ -45,7 +48,9 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.recognise_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startRecognise();
+//                startRecognise();
+                insertDemoMessage();
+                speechList.setSelection(messageAdapter.getCount() - 1);
             }
         });
         findViewById(R.id.record_button).setOnClickListener(new View.OnClickListener() {
@@ -56,7 +61,7 @@ public class MainActivity extends BaseActivity {
         });
         speechText = (TextView) findViewById(R.id.speech_text);
         speechList = (ListView) findViewById(R.id.speech_list);
-        speechList.setAdapter(new ListMessageAdapter(this, getDemoMessages()));
+        speechList.setAdapter(messageAdapter);
     }
 
     private List<TeleMessage> getDemoMessages() {
@@ -67,6 +72,10 @@ public class MainActivity extends BaseActivity {
         demoMessages.add(new TeleMessage("你好你好，你再哪里呢。我要去接你哈哈哈哈。你一定要等我", Constants.MESSAGE_SENDER_ME));
         demoMessages.add(new TeleMessage("你好你好，你再哪里呢。我要去接你哈哈哈哈。你一定要等我", "小华"));
         return demoMessages;
+    }
+
+    private void insertDemoMessage() {
+        messageAdapter.insertMessage(new TeleMessage("你来了一条新的消息，这是被按钮触发的，加油！心声！", Constants.MESSAGE_SENDER_ME));
     }
 
     private void initSpeech() {

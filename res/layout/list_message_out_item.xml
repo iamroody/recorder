@@ -16,7 +16,7 @@
 		android:layout_height="wrap_content"
 		android:layout_width="0dp"
 		android:layout_weight="4"
-		android:textColor="@color/black"
+		android:textColor="@drawable/message_font_color"
 		android:textSize="@dimen/middle_font_size"
 		android:focusableInTouchMode="true"
 		android:clickable="true"
