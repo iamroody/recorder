@@ -13,13 +13,13 @@ import java.util.Date;
  * Time: 11:25 上午
  * Email:gongmingqm10@foxmail.com
  */
-public class Message {
+public class TeleMessage {
 
     private String content;
     private String sender;
     private Date time;
 
-    public Message(String content, String sender) {
+    public TeleMessage(String content, String sender) {
         this.content = content;
         this.sender = sender;
         this.time = Calendar.getInstance().getTime();

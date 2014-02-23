@@ -7,11 +7,18 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.recorder.adapter.ListMessageAdapter;
+import com.example.recorder.model.TeleMessage;
 import com.example.recorder.service.CallRecordService;
+import com.example.recorder.utils.Constants;
 import com.example.recorder.utils.SpeechJsonParser;
 import com.iflytek.speech.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -24,6 +31,7 @@ public class MainActivity extends BaseActivity {
     private SpeechRecognizer speechRecognizer;
 
     private TextView speechText;
+    private ListView speechList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,18 @@ public class MainActivity extends BaseActivity {
             }
         });
         speechText = (TextView) findViewById(R.id.speech_text);
+        speechList = (ListView) findViewById(R.id.speech_list);
+        speechList.setAdapter(new ListMessageAdapter(this, getDemoMessages()));
+    }
+
+    private List<TeleMessage> getDemoMessages() {
+        List<TeleMessage> demoMessages = new ArrayList<TeleMessage>();
+        demoMessages.add(new TeleMessage("你好你好，你再哪里呢。我要去接你哈哈哈哈。你一定要等我", Constants.MESSAGE_SENDER_ME));
+        demoMessages.add(new TeleMessage("你好你好，你再哪里呢。我要去接你哈哈哈哈。你一定要等我", "小明"));
+        demoMessages.add(new TeleMessage("你好你好，你再哪里呢。我要去接你哈哈哈哈。你一定要等我", "小黑"));
+        demoMessages.add(new TeleMessage("你好你好，你再哪里呢。我要去接你哈哈哈哈。你一定要等我", Constants.MESSAGE_SENDER_ME));
+        demoMessages.add(new TeleMessage("你好你好，你再哪里呢。我要去接你哈哈哈哈。你一定要等我", "小华"));
+        return demoMessages;
     }
 
     private void initSpeech() {
@@ -74,8 +94,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private RecognizerListener recognizerListener = new RecognizerListener.Stub() {
-
-
 
         @Override
         public void onVolumeChanged(int i) throws RemoteException {

@@ -1,13 +1,12 @@
 package com.example.recorder.adapter;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.example.recorder.BaseActivity;
 import com.example.recorder.R;
-import com.example.recorder.model.Message;
+import com.example.recorder.model.TeleMessage;
 import com.example.recorder.utils.Constants;
 
 import java.util.ArrayList;
@@ -24,12 +23,12 @@ import java.util.Map;
 public class ListMessageAdapter extends BaseAdapter {
 
     public BaseActivity context;
-    public List<Message> messages;
+    public List<TeleMessage> messages;
     private Map<String, View> viewContainer;
 
-    public ListMessageAdapter(BaseActivity context, List<Message> messages) {
+    public ListMessageAdapter(BaseActivity context, List<TeleMessage> messages) {
         this.context = context;
-        if(messages == null) messages = new ArrayList<Message>();
+        if(messages == null) messages = new ArrayList<TeleMessage>();
         this.messages = messages;
         viewContainer = new HashMap<String, View>();
 
@@ -39,7 +38,7 @@ public class ListMessageAdapter extends BaseAdapter {
         return messages.size();
     }
 
-    public void insertMessage(Message message) {
+    public void insertMessage(TeleMessage message) {
         messages.add(message);
         this.notifyDataSetChanged();
     }
@@ -57,7 +56,7 @@ public class ListMessageAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        Message message = messages.get(position);
+        TeleMessage message = messages.get(position);
         boolean isSender = message.isSender();
         if(isSender) {
             convertView = viewContainer.get(Constants.MESSAGE_OUT_KEY);

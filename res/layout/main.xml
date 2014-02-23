@@ -54,7 +54,10 @@
 		    android:id="@+id/speech_list"
 		    android:cacheColorHint="@color/transparent"
 		    android:listSelector="@color/transparent"
+		    android:divider="@color/transparent"
+		    android:dividerHeight="0dp"
 		    android:alwaysDrawnWithCache="false"
+		    android:scrollbars="none"
 			/>
 	</LinearLayout>
 </LinearLayout>
