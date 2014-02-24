@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     private static final int UPDATE_TEXT_MSG = 1001;
     private static final int RESTART_SPEECH_RECOGNIZER = 1003;
-    private static final int DELAY_MILLIONS = 3000;
+    private static final int DELAY_MILLIONS = 4000;
     private boolean speechRunning = false;
 
     private SpeechRecognizer speechRecognizer;
